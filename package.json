@@ -1,0 +1,45 @@
+{
+  "name": "PCEE",
+  "version": "1.0.0",
+  "releaseDate": "2026-10-05",
+  "type": "module",
+  "packageManager": "yarn@4.17.1",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "build": "gulp build",
+    "tauri": "gulp tauri",
+    "cleanTauri": "gulp cleanTauri",
+    "clean": "gulp clean",
+    "cleanAll": "gulp cleanAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tugraz-isds/pcee"
+  },
+  "keywords": [
+    "parallel coordinates",
+    "explorable explainer",
+    "scroll driven animations",
+    "intersection observer",
+    "visualisation"
+  ],
+  "author": "Romana Gruber",
+  "license": "MIT",
+  "dependencies": {
+    "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/plugin-dialog": "^2.7.3",
+    "@tauri-apps/plugin-fs": "^2.5.2",
+    "gsap": "^3.15.0",
+    "vue": "^3.5.38"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.11.4",
+    "@vitejs/plugin-vue": "^6.0.7",
+    "gulp": "^5.0.1",
+    "gulp-cli": "^3.1.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vite-plugin-vue-devtools": "^8.1.3"
+  }
+}

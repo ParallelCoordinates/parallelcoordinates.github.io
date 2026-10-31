@@ -1,0 +1,209 @@
+name: publish
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    permissions:
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: macos-aarch64
+            platform: macos-latest
+            args: --target aarch64-apple-darwin
+
+          - id: linux
+            platform: ubuntu-22.04
+            args: ""
+
+          - id: windows
+            platform: windows-latest
+            args: ""
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Linux system dependencies
+        if: ${{ matrix.platform == 'ubuntu-22.04' }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Activate repository Yarn version
+        run: corepack prepare yarn@4.17.1 --activate
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: ./src-tauri -> target
+
+      - name: Install frontend dependencies
+        run: yarn install --immutable
+
+      - name: Build app
+        run: yarn tauri ${{ matrix.args }}
+
+      - name: Show packaged files
+        run: node -e "const fs=require('fs'); const path=require('path'); const walk=(dir, depth=0)=>{ if(!fs.existsSync(dir)){ console.log('missing', dir); return; } for (const entry of fs.readdirSync(dir,{withFileTypes:true})) { const full=path.join(dir, entry.name); console.log(full); if (entry.isDirectory() && depth < 4) walk(full, depth + 1); } }; walk('package');"
+
+      - name: Upload macOS bundles
+        if: ${{ matrix.platform == 'macos-latest' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.id }}
+          path: |
+            package/macos/*
+          if-no-files-found: warn
+
+      - name: Upload Linux bundles
+        if: ${{ matrix.platform == 'ubuntu-22.04' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.id }}
+          path: |
+            package/linux/*
+          if-no-files-found: warn
+
+      - name: Upload Windows bundles
+        if: ${{ matrix.platform == 'windows-latest' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.id }}
+          path: |
+            package/win/*
+          if-no-files-found: warn
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download all build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+
+      - name: Show collected files
+        shell: bash
+        run: find release-assets -type f | sort
+
+      - name: Prepare release assets
+        shell: bash
+        run: |
+          mkdir -p release-assets/final
+          VERSION=$(node -p "require('./package.json').version")
+
+          find release-assets/windows -maxdepth 1 -type f -exec sh -c '
+            src="$1"
+            filename=$(basename "$src")
+            case "$filename" in
+              *.msi)
+                target="pcee-v'"$VERSION"'-win.msi"
+                ;;
+              *setup*.exe|*Setup*.exe)
+                target="pcee-v'"$VERSION"'-win-setup.exe"
+                ;;
+              *.exe)
+                target="pcee-v'"$VERSION"'-win.exe"
+                ;;
+              *)
+                exit 0
+                ;;
+            esac
+            cp "$src" "release-assets/final/$target"
+          ' sh {} \;
+
+          find release-assets/linux -maxdepth 1 -type f -exec sh -c '
+            src="$1"
+            filename=$(basename "$src")
+            case "$filename" in
+              *.AppImage)
+                target="pcee-v'"$VERSION"'-linux.AppImage"
+                ;;
+              *.deb)
+                target="pcee-v'"$VERSION"'-linux.deb"
+                ;;
+              *.rpm)
+                target="pcee-v'"$VERSION"'-linux.rpm"
+                ;;
+              *)
+                exit 0
+                ;;
+            esac
+            cp "$src" "release-assets/final/$target"
+          ' sh {} \;
+
+          find release-assets/macos-aarch64 -type d -name '*.app' -exec sh -c '
+            app_path="$1"
+            app_dir=$(dirname "$app_path")
+            zip_name="pcee-v'"$VERSION"'-mac.app.zip"
+            cd "$app_dir"
+            zip -r "$OLDPWD/release-assets/final/$zip_name" "$(basename "$app_path")"
+          ' sh {} \;
+
+          find release-assets/macos-aarch64 -maxdepth 1 -type f -name '*.dmg' -exec sh -c '
+            src="$1"
+            cp "$src" "release-assets/final/pcee-v'"$VERSION"'-mac.dmg"
+          ' sh {} \;
+
+      - name: Show prepared files
+        shell: bash
+        run: find release-assets/final -type f | sort
+
+      - name: Create or update draft release
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="v$VERSION"
+          TITLE="PCEE v$VERSION"
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release edit "$TAG" \
+              --title "$TITLE" \
+              --notes "See the assets to download this version and install." \
+              --draft=true
+          else
+            gh release create "$TAG" \
+              --title "$TITLE" \
+              --notes "See the assets to download this version and install." \
+              --draft
+          fi
+
+      - name: Upload all assets to the draft release
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="v$VERSION"
+          find release-assets/final -maxdepth 1 -type f -print0 | xargs -0 gh release upload "$TAG" --clobber
