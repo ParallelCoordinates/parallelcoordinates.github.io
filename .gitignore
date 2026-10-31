@@ -10,3 +10,4 @@ Cargo.lock
 package/
 .yarn/install-state.gz
 settings.json
+/.idea
