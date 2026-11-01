@@ -1,121 +1,11 @@
 
 # Parallel Coordinates Explorable Explainer (PCEE)
 
-An explorable explainer which guides a reader through an interactive
-tutorial about parallel coordinates.  This is a single page web
-application (SPA) built using [Vue3](https://vuejs.org/).
+This website is published at: https://parallelcoordinates.github.io
 
-A live version of the latest deployment can be found at
-[https://tugraz-isds.github.io/pcee](https://tugraz-isds.github.io/pcee).
-
-
-## Dependencies
-
-The explorable explainer uses
-[SPCD3](https://github.com/tugraz-isds/spcd3) to generate and
-visualise parallel coordinates.
-
-Scroll-driven animations are implemented using native CSS.  For
-browsers and platforms that don't yet support it, a fallback is
-provided using [GSAP](https://github.com/greensock/GSAP) as a
-polyfill.
-
-
-
-## Getting Started
-
-### Prerequisites
-
-Open terminal and execute the following command to install all the dependencies:
-
-```
-corepack enable
-yarn install
-```
-
-
-### Compile and Hot-Reload for Development
-
-```
-yarn dev
-or
-yarn exec vite
-```
-
-
-### Building the Web App
-
-Gulp is used to automate repeatable tasks. The file [gulpfile.js](gulpfile.js)
-defines three public tasks to build the web app:
-
-<br/>
-
-`build` creates a new build of PCEE
-and stores the generated files into the `dist/` folder:
-
-```
-yarn build
-or
-yarn exec gulp build
-```
-
-To run the example, a live web server must be started in the
-folder `dist/`.
-
-<br/>
-
-
-`clean` removes the existing `dist/` and `package/` directory in order
-to enable a clean rebuild of the project:
-
-```
-yarn clean
-or
-yarn exec gulp clean
-```
-
-<br/>
-
-`cleanAll` restores the project folder to its virgin state,
-by deleting the existing `dist/`, `package/`, `node_modules/` and
-`src-tauri/target/` directories:
-
-```
-yarn cleanAll
-or
-yarn exec gulp cleanAll
-```
-
-<br/>
-
-Each of the public Gulp tasks can also be invoked by running the
-equivalent yarn script defined in `package.json`.
-
-
-
-### Building a Native Desktop App
-
-Prerequisites: To build a native desktop app, Rust, Cargo and Tauri
-2.0 needs to be installed.
-
-`tauri` builds a native desktop app with Tauri 2.0 and copies the
-generated artifacts to `package/`.
-
-```
-yarn tauri
-or
-yarn exec gulp tauri
-```
-
-`cleanTauri` removes the `src-tauri/target/` directory to enable a
-clean build of the native desktop app:
-
-```
-yarn cleanTauri
-# or
-yarn exec gulp cleanTauri
-```
-
+It is based on the project
+[https://tugraz-isds.github.io/pcee](https://tugraz-isds.github.io/pcee) and adapation will be made to capture web site data and 
+optimize visibilty.
 
 
 ## Licence
@@ -125,7 +15,16 @@ more information.
 
 ## Contributors
 
-- Keith Andrews [kandrews@iicm.edu](mailto:kandrews@iicm.edu?subject=Rslidy)  
+- Ismael Ibrahim  
+  IaWeb Student
+- Xuiy XuZhang  
+  IaWeb Student
+- Svyatoslav Gvozdkov  
+  IaWeb Student
+
+## Contributors - Base Project
+
+- Keith Andrews.
   Project Leader.
 
 - Romana Gruber  

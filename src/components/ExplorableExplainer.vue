@@ -5,15 +5,6 @@
       :class="['sticky-header', { 'use-native': supportsScrollDrivenAnimations }]"
     >
       <div class="header-actions">
-        <a
-          class="header-action-button"
-          :href="repoUrl"
-        >
-          <img
-            class="header-icon-image"
-            src="/svg/github.svg"
-          >
-        </a>
         <button
           type="button"
           class="header-action-button"
@@ -257,7 +248,6 @@ const releaseDate = new Date(packageInfo.releaseDate).toLocaleDateString('en-GB'
   year: 'numeric',
   timeZone: 'UTC',
 });
-const repoUrl = packageInfo.repository.url;
 const DARK_MODE_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 const PORTRAIT_RESIZE_QUERY = '(max-width: 60em) and (orientation: portrait)';
 const SCROLL_POSITION_KEY = 'pcee:scroll-position';

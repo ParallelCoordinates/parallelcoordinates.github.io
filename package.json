@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tugraz-isds/pcee"
+    "url": "https://github.com/ParallelCoordinates/parallelcoordinates.github.io"
   },
   "keywords": [
     "parallel coordinates",
@@ -24,7 +24,7 @@
     "intersection observer",
     "visualisation"
   ],
-  "author": "Romana Gruber",
+  "author": "Ismael Ibrahim",
   "license": "MIT",
   "dependencies": {
     "@tauri-apps/api": "^2.11.1",
