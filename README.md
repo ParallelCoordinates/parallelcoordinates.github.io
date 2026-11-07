@@ -3,9 +3,10 @@
 
 This website is published at: https://parallelcoordinates.github.io
 
-It is based on the project
-[https://tugraz-isds.github.io/pcee](https://tugraz-isds.github.io/pcee) and adapation will be made to capture web site data and 
-optimize visibilty.
+This project is based on the <a href="https://github.com/tugraz-isds/pcee">PCEE Main Project</a>
+and is intended for research on website visibility, search engine optimization (SEO),
+answer engine optimization (AEO)
+and generative engine optimization (GEO).
 
 
 ## Licence
@@ -15,14 +16,11 @@ more information.
 
 ## Contributors
 
-- Ismael Ibrahim  
-  IaWeb Student
-- Xuiy XuZhang  
-  IaWeb Student
-- Svyatoslav Gvozdkov  
-  IaWeb Student
+- Ismael Ibrahim, Xuiy XuZhang and Svyatoslav Gvozdkov.   
+  IAWeb Student.
 
-## Contributors - Base Project
+
+## Contributors - Main Project
 
 - Keith Andrews.
   Project Leader.
