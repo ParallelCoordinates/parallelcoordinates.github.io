@@ -9,3 +9,8 @@
     --iconColor: #0081AF;
     --iconBackgroundColor: #FEFCF4;
 }
+
+#stcm-form {
+    animation: none;
+    opacity: 1;
+}

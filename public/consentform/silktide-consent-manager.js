@@ -364,6 +364,7 @@ class SilktideConsentManager {
   createWrapper() {
     this.wrapper = document.createElement('div');
     this.wrapper.id = 'stcm-wrapper';
+    this.wrapper.setAttribute('data-nosnippet', ''); // Neu
     document.body.insertBefore(this.wrapper, document.body.firstChild);
   }
 
@@ -1107,7 +1108,7 @@ class SilktideConsentManager {
       this.removeBanner();
       //Removed - jumps to the top of the page if preferences are opened
       //Purpose was to prevent Scrolling while the preferences window is open, but is neglectible
-      //this.preventBodyScroll();
+      this.preventBodyScroll();
 
 
       // Focus the close button
