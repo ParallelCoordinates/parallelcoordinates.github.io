@@ -199,6 +199,10 @@
       </button>
     </div>
   </Teleport>
+
+  <footer class="site-footer">
+    <a href="/gdpr-en.html" rel='nofollow'>Privacy Policy</a>
+  </footer>
 </template>
 
 <script setup lang="ts">

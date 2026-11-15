@@ -42,7 +42,7 @@ window.silktideConsentManager.init({
     ],
     text: {
         prompt: {
-            description: "<p>We use cookies on our site to enhance your user experience, provide personalized content, and analyze our traffic.</p>",
+            description: "<p>We use Google Analytics with your consent to analyze how this website is used. Read our <a href='/gdpr-en.html' rel='nofollow'>Privacy Policy</a>.</p>",
             acceptAllButtonText: "Accept all",
             acceptAllButtonAccessibleLabel: "Accept all cookies",
             rejectNonEssentialButtonText: "Reject non-essential",
