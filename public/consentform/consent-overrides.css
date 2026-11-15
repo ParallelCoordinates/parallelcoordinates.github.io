@@ -1,0 +1,16 @@
+#stcm-wrapper {
+    --boxShadow: -5px 5px 10px 0px #00000012, 0px 0px 50px 0px #0000001a;
+    --fontFamily: Helvetica Neue, Segoe UI, Arial, sans-serif;
+    --primaryColor: #0081AF;
+    --backgroundColor: #FEFCF4;
+    --textColor: #000000;
+    --backdropBackgroundColor: #00000033;
+    --backdropBackgroundBlur: 0px;
+    --iconColor: #0081AF;
+    --iconBackgroundColor: #FEFCF4;
+}
+
+#stcm-form {
+    animation: none;
+    opacity: 1;
+}
