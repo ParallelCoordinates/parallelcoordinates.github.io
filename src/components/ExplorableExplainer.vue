@@ -25,14 +25,14 @@
           >
         </button>
       </div>
-      <div
+      <h1
         ref="multiLine"
         class="multi-line"
       >
         Parallel Coordinates:<br>
         An Interactive Tutorial<br>
         <span class="info">Scroll to begin</span>
-      </div>
+      </h1>
       <div
         ref="singleLine"
         class="single-line"
@@ -199,6 +199,10 @@
       </button>
     </div>
   </Teleport>
+
+  <footer class="site-footer">
+    <a href="/gdpr-en.html" rel='nofollow'>Privacy Policy</a>
+  </footer>
 </template>
 
 <script setup lang="ts">
