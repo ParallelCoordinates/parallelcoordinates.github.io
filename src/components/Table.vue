@@ -15,9 +15,12 @@
                     placeholder="Column name"
                     class="header-input"
                     :title="column.label"
+                    :aria-label="`Column name: ${column.label || 'Unnamed column'}`"
                     >
                     <button
+                    type="button"
                     class="header-button"
+                    :aria-label="`Delete column: ${column.label || 'Unnamed column'}`"
                     @click="deleteColumn(column.key)"
                     >
                     -
@@ -26,7 +29,9 @@
                     </th>
                 <th class="narrow-column">
                 <button
+                  type="button"
                   class="add-button"
+                  aria-label="Add column"
                   @click="addColumn"
                 >
                 +
@@ -50,6 +55,7 @@
                 <input
                   v-model="row[column.key]"
                   :type="column.type === 'number' ? 'number' : 'text'"
+                  :aria-label="`${column.label || 'Unnamed column'}, row ${rowIndex + 1}`"
                   :class="{
                     'text-right': column.type === 'number',
                     'text-left': column.type === 'string'
@@ -60,7 +66,9 @@
             <td class="narrow-column">
                 <!-- Delete Row Button -->
                 <button
+                  type="button"
                   class="delete-button"
+                  :aria-label="`Delete row ${rowIndex + 1}`"
                   @click="deleteRow(rowIndex)"
                 >
                 -
@@ -70,6 +78,7 @@
         <tr>
             <td :colspan="columns.length">
                 <button
+                  type="button"
                   class="table-button"
                   :disabled="!isFormValid"
                   @click="redrawChart"
@@ -77,6 +86,7 @@
                   Redraw Chart
                 </button>
                 <button
+                  type="button"
                   class="table-button"
                   @click="resetTable">
                   Reset Table
@@ -85,7 +95,9 @@
             <td class="narrow-column">
                 <!-- Add Row Button -->
                 <button
+                  type="button"
                   class="add-button"
+                  aria-label="Add row"
                   @click="addRow"
                 >
                 +

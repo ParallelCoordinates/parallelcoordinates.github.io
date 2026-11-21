@@ -6618,6 +6618,7 @@ function makeIconButton(parent, opts) {
         .append("button")
         .attr("class", "spcd3-toolbar-button")
         .attr("type", "button")
+        .attr("aria-label", tipText)
         .attr("id", id ?? null);
     if (onClick)
         btn.on("click", onClick);
@@ -9481,6 +9482,7 @@ function createInputFieldWithLabel(modal, text, inputId) {
     const label = document.createElement("label");
     label.className = "spcd3-modal-label";
     label.textContent = text;
+    label.htmlFor = inputId;
     modal.append(() => label);
     const input = document.createElement("input");
     input.className = "spcd3-modal-input";

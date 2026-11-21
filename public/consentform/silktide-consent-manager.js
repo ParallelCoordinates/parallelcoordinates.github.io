@@ -1108,12 +1108,12 @@ class SilktideConsentManager {
       this.removeBanner();
       //Removed - jumps to the top of the page if preferences are opened
       //Purpose was to prevent Scrolling while the preferences window is open, but is neglectible
-      this.preventBodyScroll();
+      //this.preventBodyScroll();
 
 
       // Focus the close button
       const modalCloseButton = this.preferences.querySelector('.stcm-modal-close');
-      modalCloseButton.focus();
+      modalCloseButton.focus({ preventScroll: true });
 
       // Trigger optional onPreferencesOpen callback
       if (typeof this.config.onPreferencesOpen === 'function') {
@@ -1125,7 +1125,7 @@ class SilktideConsentManager {
       // Close the modal without saving anything - saving is handled by the "Save and Close" and "Reject All" buttons only
       this.hideBackdrop();
       this.showCookieIcon();
-      this.allowBodyScroll();
+      //this.allowBodyScroll();
 
       // Trigger optional onPreferencesClose callback
       if (typeof this.config.onPreferencesClose === 'function') {
