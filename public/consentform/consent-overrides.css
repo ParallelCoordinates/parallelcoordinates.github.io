@@ -14,3 +14,7 @@
     animation: none;
     opacity: 1;
 }
+
+#stcm-wrapper #stcm-icon {
+    display: none !important;
+}

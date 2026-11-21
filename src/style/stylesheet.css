@@ -195,4 +195,8 @@ a:hover {
 }
 .site-footer {
   text-align: center;
+  padding: 1rem;
+}
+.privacy-settings-button {
+  margin-left: 1rem;
 }

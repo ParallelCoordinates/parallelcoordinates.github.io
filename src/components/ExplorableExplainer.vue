@@ -208,6 +208,13 @@
 
   <footer class="site-footer">
     <a href="/gdpr-en.html" rel='nofollow'>Privacy Policy</a>
+    <button
+        type="button"
+        class="privacy-settings-button"
+        @click="openPrivacySettings"
+    >
+      Privacy settings
+    </button>
   </footer>
 </template>
 
@@ -224,6 +231,9 @@ import Stepper from './Stepper.vue';
 import { resetTable, loadContent, getCurrentStepIndex, initalLoadOfDataset, getDatasetForStep, drawChart, 
   writeTitleToDataset, getSharedVariable, resetUsageState } from '../helper.js';
 const { resetCurrentStep } = getSharedVariable();
+const openPrivacySettings = (): void => {
+  window.dispatchEvent(new Event('open-privacy-settings'));
+};
 
 gsap.registerPlugin(ScrollTrigger);
 

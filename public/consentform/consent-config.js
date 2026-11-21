@@ -60,3 +60,11 @@ window.silktideConsentManager.init({
         }
     }
 });
+
+window.addEventListener('open-privacy-settings', () => {
+    const manager = window.silktideConsentManager.getInstance();
+
+    if (manager) {
+        manager.toggleModal(true);
+    }
+});
