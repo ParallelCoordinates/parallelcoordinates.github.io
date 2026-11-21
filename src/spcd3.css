@@ -161,7 +161,7 @@ table {
   --spcd3-shadow-popover: light-dark(rgba(0, 0, 0, 0.2), rgba(7, 17, 30, 0.35));
   --spcd3-shadow-modal: light-dark(rgba(0, 0, 0, 0.3), rgba(7, 17, 30, 0.45));
   --spcd3-active-records: light-dark(
-    rgba(0, 129, 175, 0.5),
+    rgba(0, 90, 124, 0.5),
     rgba(76, 164, 208, 0.5)
   );
 }

@@ -11,12 +11,752 @@
         href="./consentform/consent-overrides.css">
 
     <title>Parallel Coordinates Tutorial</title>
-    <meta name="description" content="Learn how to read and interpret parallel coordinates with an interactive tutorial. Analyze plots, manipulate records, operate on dimensions, and identify outliers, clusters and correlations.">
+    <meta name="description" content="Learn about parallel coordinates in an interactive tutorial. Explore records and plots, and identify outliers, clusters and correlations.">
     <link rel="canonical" href="https://parallelcoordinates.github.io/">
   </head>
 
   <body>
-    <div id="app"></div>
+    <div id="app">
+    <noscript>
+    <main id="static-tutorial">
+        <h1>Parallel Coordinates: An Interactive Tutorial</h1>
+        <noscript><p>This version contains the tutorial explanations and static figures. Enable JavaScript to use the interactive charts and controls.</p></noscript>
+        <article id="1-introduction">
+            <h2>1. Introduction</h2>
+            <p>
+                Parallel coordinates are a powerful visualisation technique used to
+                explore and analyse multidimensional tabular
+                data. Each <em>dimension</em> (column) is typically represented as a
+                vertical axis. Each <em>record</em> (row) is represented as a polyline
+                which touches each axis once.  Dimensions are typically either
+                numerical (numbers) or categorical (strings).
+            </p>
+
+            <p>
+                By observing how the polylines cluster across axes, analysts can gain
+                insights into outliers, patterns, and groupings of records. The visual
+                pattern between adjacent axes can suggest potential correlations
+                between dimensions.
+            </p>
+
+            <p>
+                This tutorial uses
+                the <a href="https://github.com/tugraz-isds/spcd3">SPCD3</a> parallel
+                coordinates component to provide interactive illustrations.
+            </p>
+        </article>
+        <article id="2-simple-example">
+            <h2>2. Simple Example</h2>
+
+            <p>
+                Personal Finances is a simple fictitious dataset with 4 dimensions
+                (Name, Income, Accomodation, Living) and 6 records (for 6 people),
+                representing people's income and expenditure. The data can be explored
+                interactively in the parallel coordinates chart. In the table below,
+                rows and columns can be added or deleted, and data values can be
+                modified, to see the effect on the chart.
+            </p>
+
+            <div class="table-scroll"><table>
+                <caption>Personal finances example data</caption>
+                <thead><tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Income (€)</th>
+                    <th scope="col">Accomodation (€)</th>
+                    <th scope="col">Living (€)</th>
+                </tr></thead>
+                <tbody>
+                <tr>
+                    <td>Alice</td>
+                    <td>3500</td>
+                    <td>1200</td>
+                    <td>2300</td>
+                </tr>
+                <tr>
+                    <td>Bob</td>
+                    <td>2800</td>
+                    <td>900</td>
+                    <td>1900</td>
+                </tr>
+                <tr>
+                    <td>Charlie</td>
+                    <td>4200</td>
+                    <td>1500</td>
+                    <td>2700</td>
+                </tr>
+                <tr>
+                    <td>Fiona</td>
+                    <td>2700</td>
+                    <td>800</td>
+                    <td>1900</td>
+                </tr>
+                <tr>
+                    <td>Ursula</td>
+                    <td>6000</td>
+                    <td>500</td>
+                    <td>5500</td>
+                </tr>
+                <tr>
+                    <td>Victor</td>
+                    <td>3400</td>
+                    <td>1100</td>
+                    <td>2300</td>
+                </tr>
+                </tbody>
+            </table></div></article>
+        <article id="3-operations-on-records">
+            <h2>3. Operations on Records</h2>
+
+            <p>
+                Interactivity brings a parallel coordinates chart to life. Some interactive
+                operations relate to records:
+            </p>
+            <ul>
+                <li>
+                    <span>Filtering Records</span>
+                    <p>
+                        Records can be activated and deactivated by setting filters on one or
+                        more dimensions. Records outside of the range are automatically
+                        deactivated and greyed out.
+                    </p>
+                    <p>
+                        Use the double-edged range sliders<svg width="20" height="20" viewbox="0 0 4 11" class="inline-icon" aria-hidden="true"><use href="#range-slider-icon"></use></svg>to
+                        filter out some records. Filters can also be set by right-clicking
+                        on a dimension's name to open its context menu.
+                    </p>
+                </li>
+
+                <li>
+                    <span>Selecting Records</span>
+                    <p>
+                        It is helpful to be able to select one or more records in the dataset
+                        and to highlight them accordingly.
+                    </p>
+                    <p>
+                        Left-click one or more records to highlight them in orange. A
+                        shift-left-click adds one or more records to the current selection. A
+                        control-left-click toggles the selection status of the affected records.
+                        Left-clicking in empty space clears the current selection.
+                    </p>
+                </li>
+
+                <li>
+                    <span>Hovering over Records</span>
+                    <p>
+                        If there are a large number of records, a parallel coordinates
+                        visualisation contains a large number of potentially crossing and
+                        overlapping polylines, so it is challenging to recognise which polyline
+                        belongs to which record.
+                    </p>
+                    <p>
+                        Hover over one or more records to highlight the record(s) beneath the
+                        mouse pointer in red, and to show tooltips with the values of the
+                        corresponding record(s).
+                    </p>
+                </li>
+
+                <li>
+                    <span>Other Operations via Record Context Menu</span>
+                    <p>
+                        When hovering over one or more records, right-clicking opens the
+                        <span>Record Context Menu</span> with the following
+                        operations: <span>Select Record(s)</span>,
+                        <span>Unselect Record(s)</span>,
+                        <span>Toggle Record(s)</span>,
+                        <span>Add to Selection</span>, and
+                        <span>Remove from Selection</span>.
+                    </p>
+                    <p>
+                        Hover over a record and right-click to open the
+                        <span>Record Context Menu</span>.
+                    </p>
+                </li>
+            </ul>
+        </article>
+
+        <article id="4-operations-on-dimensions">
+            <h2>4. Operations on Dimensions</h2>
+
+            <p>Other interactive operations relate to dimensions of the data:</p>
+            <ul>
+                <li>
+                    <span>Inverting Dimensions</span>
+                    <p>
+                        By default, a dimension’s axis places higher values at the top and lower
+                        values at the bottom. Inverting a dimension can be helpful to
+                        corroborate a suspected correlation between adjacent dimensions.
+                    </p>
+
+                    <p>
+                        Click the<svg width="12" height="12" viewbox="0 0 6 12" class="inline-icon" aria-hidden="true"><use href="#invert-dimension-icon"></use></svg>button
+                        above the dimension axis or use the dimension's context menu to
+                        invert the dimension.
+                    </p>
+                </li>
+                <li>
+                    <span>Moving Dimensions</span>
+                    <p>
+                        When looking for correlations between dimensions, meaningful
+                        relationships are only revealed between adjacent dimensions. Hence, it
+                        is important to be able to move one dimension next to another dimension
+                        of interest.
+                    </p>
+
+                    <p>
+                        Use drag and drop to move a dimension to the desired position.
+                    </p>
+                </li>
+                <li>
+                    <span>Hiding Dimensions</span>
+
+                    <p>
+                        Displaying too many dimensions can be overwhelming, so it is important
+                        to be able to hide individual dimensions.
+                    </p>
+
+                    <p>
+                        Hide dimensions from a dimension's context menu. Use Show All Dimensions
+                        to restore all.
+                    </p>
+                </li>
+                <li>
+                    <span>Adjusting a Dimension's Range</span>
+
+                    <p>
+                        By default, the range of the dimension’s axis is set to the minimum and
+                        maximum values present in the current dataset.
+                    </p>
+
+                    <p>
+                        Adjust the range of a dimension from a dimension's context menu.
+                    </p>
+                </li>
+
+                <li>
+                    <span>Other Operations via Dimension Context Menu</span>
+                    <p>
+                        When hovering over a dimension's title or axis, right-clicking opens the
+                        <span>Dimension Context Menu</span> with the following
+                        operations: <span>Copy Name</span>,
+                        <span>Hide</span>, <span>Invert</span>,
+                        <span>Set Range...</span>,
+                        <span>Set Range from Data</span>,
+                        <span>Set Rounded Range from Data</span>,
+                        <span>Set Filter...</span>,
+                        <span>Reset Filter</span>, and
+                        <span>Show All Dimensions</span>.
+                    </p>
+                    <p>
+                        Hover over a dimension's title or axis and right-click to open the
+                        <span>Dimension Context Menu</span>.
+                    </p>
+                </li>
+            </ul>
+        </article>
+
+        <article id="5-other-functionality">
+            <h2>5. Other Functionality</h2>
+
+            <p>
+                The SPCD3 parallel coordinates component used in the chart also provides
+                some additional functionality in its toolbar, which can be accessed pressing
+                the
+                <svg width="18" height="18" viewbox="0 0 6 6" class="inline-icon" aria-hidden="true"><use href="#toolbar-toggle-icon"></use></svg>
+                button:
+            </p>
+            <ul>
+                <li>
+                    <span>Show Table</span>
+                    <p>
+                        Displays the dataset in tabular form and allows it to be downloaded as a
+                        CSV file.
+                    </p>
+                    <p>
+                        Click the
+                        <svg width="12" height="12" viewbox="0 0 10 10" class="inline-icon" aria-hidden="true"><use href="#show-table-icon"></use></svg>
+                        button and download the dataset as a CSV file.
+                    </p>
+                </li>
+
+                <li>
+                    <span>Download Chart (SVG)</span>
+                    <p>
+                        Allows the chart to be downloaded in Scalable Vector Graphics (SVG)
+                        format.
+                    </p>
+                    <p>
+                        Click the
+                        <svg width="12" height="12" viewbox="0 0 10 10" class="inline-icon" aria-hidden="true"><use href="#download-svg-icon"></use></svg>
+                        button and save the chart as SVG.
+                    </p>
+                </li>
+
+                <li>
+                    <span>Refresh</span>
+                    <p>Draws the chart again, in case of any rendering issues.</p>
+                    <p>
+                        Click the
+                        <svg width="12" height="12" viewbox="0 0 10 10" class="inline-icon" aria-hidden="true"><use href="#refresh-chart-icon"></use></svg>
+                        button to redraw the chart (will generally not change the display).
+                    </p>
+                </li>
+
+                <li>
+                    <span>Reset</span>
+                    <p>Resets the chart to its original state.</p>
+                    <p>
+                        Set a filter, then click the
+                        <svg width="12" height="12" viewbox="0 0 10 10" class="inline-icon" aria-hidden="true"><use href="#reset-chart-icon"></use></svg>
+                        button to return the chart to its original state.
+                    </p>
+                </li>
+            </ul>
+        </article>
+
+        <article id="6-usage">
+            <h2>6. Usage</h2>
+
+            <p>
+                Parallel coordinates are used for identifying outliers and clusters among
+                records, and discovering correlations between dimensions.
+            </p>
+
+            <p>
+                The Heart Health Dataset is a fictitious, curated dataset representing
+                health-related measurements. It consists of 8 dimensions (Patient, Age,
+                Blood Pressure, Heart Rate, BMI, Cholesterol, Fitness Score, and Treatment)
+                and 6 records (for six patients).
+            </p>
+
+
+
+            <h3>6.1 Identifying Outliers Among Records</h3>
+
+            <p>
+                An outlier is a record whose data points differ significantly from
+                other records in one or more dimensions. Outliers stand out clearly,
+                because their polylines follow a different path to those of other
+                records. The Heart Health Dataset contains one obvious outlier, an
+                older patient, William, with significantly worse metrics:
+            </p>
+
+
+
+            <p id="show-error"></p>
+
+
+
+            <h3>6.2 Identifying Clusters of Records</h3>
+
+            <p>
+                Clusters are groups of data records which have similar
+                characteristics, so their polylines follow similar paths. For two
+                neighbouring dimensions, the visual pattern might look like the one
+                in Figure <a href="#fig1a">1a</a>.
+            </p>
+
+            <div>
+                <figure id="fig1a">
+                    <img src="/images/clusters-pc.svg" alt="Clusters in parallel coordinates.">
+                    <figcaption>Figure 1a: Clusters in parallel coordinates.</figcaption>
+                </figure>
+
+                <figure id="fig1b">
+                    <img src="/images/clusters-sp.svg" alt="Clusters in a scatterplot.">
+                    <figcaption>Figure 1b: Clusters in a scatterplot.</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                Over multiple dimensions, records in the same cluster would
+                typically follow similar paths:
+            </p>
+
+
+
+
+
+            <h3>6.3 Discovering Correlations Between Dimensions</h3>
+
+            <p>
+                If two dimensions are positively correlated, high values in one dimension
+                correspond to high values in the other, and low values in that dimension
+                correspond to low values in the other. In a parallel coordinates chart, this
+                can be seen only when the two dimensions are adjacent to one another.
+            </p>
+            <p>
+                A positive correlation is characterised by fairly parallel, rarely crossing
+                straight line segments running between the two dimensions, as shown in
+                Figure <a href="#fig2a">2a</a>. In a scatterplot, this corresponds to points
+                falling close to a straight line, as shown in Figure <a href="#fig2b">2b</a>.
+            </p>
+
+            <div>
+                <figure id="fig2a">
+                    <img src="/images/correlation-pos-np-pc.svg" alt="A positive correlation in parallel coordinates.">
+                    <figcaption>
+                        Figure 2a: A positive correlation in parallel coordinates.
+                    </figcaption>
+                </figure>
+
+                <figure id="fig2b">
+                    <img src="/images/correlation-pos-np-sp.svg" alt="A positive correlation in a scatterplot.">
+                    <figcaption>
+                        Figure 2b: A positive correlation in a scatterplot.
+                    </figcaption>
+                </figure>
+            </div>
+
+            <p>
+                In the Heart Health Dataset, the dimensions Age and Blood Pressure are
+                positively correlated. Tendentially, blood pressure increases with age. With
+                real data, parallel non-crossing line segments are rare. It often makes
+                sense to invert one of the two dimensions to check for the visual cross
+                pattern. This can be seen by inverting the Blood Pressure dimension:
+            </p>
+
+
+            <p id="invert-error"></p>
+
+
+            <p>
+                If two dimensions are negatively correlated, low values in one correspond to
+                high values in the other and vice versa. A negative correlation is
+                characterised by a visual <em>cross pattern</em> between adjacent
+                dimensions, i.e. line segments which all cross in the middle, as shown in
+                Figure <a href="#fig3a">3a</a>. In the equivalent scatterplot, the points
+                fall close to a negatively inclined straight line, as shown in
+                Figure <a href="#fig3b">3b</a>.
+            </p>
+
+            <div>
+                <figure id="fig3a">
+                    <img src="/images/correlation-neg-np-pc.svg" alt="A negative correlation in parallel coordinates.">
+                    <figcaption>
+                        Figure 3a: A negative correlation in parallel coordinates.
+                    </figcaption>
+                </figure>
+
+                <figure id="fig3b">
+                    <img src="/images/correlation-neg-np-sp.svg" alt="A negative correlation in a scatterplot.">
+                    <figcaption>
+                        Figure 3b: A negative correlation in a scatterplot.
+                    </figcaption>
+                </figure>
+            </div>
+
+            <p>
+                In the Heart Health Dataset, the dimensions Age and Fitness Score are
+                negatively correlated. Generally, the fitness score tends to decrease with
+                increasing age. This can be seen by moving the Fitness Score dimension next
+                to the Age dimension:
+            </p>
+
+
+
+            <p id="move-error"></p>
+
+
+
+            <h3>6.4 Beware of False Patterns</h3>
+
+            <p>
+                A categorical dimension is typically ordered alphabetically when
+                displayed in parallel coordinates. This can sometimes suggest a
+                pattern which is not really there. For example, in the Heart Health
+                Dataset, it appears that Patient (name) is inversely correlated with
+                Age. This is probably simply an artefact of the alphabetical
+                ordering.
+            </p>
+
+
+
+        </article>
+        <article id="section"><div>
+            <h2>7. Case Study: Student Marks</h2>
+            <p></p>
+            <p>
+                The Student Marks dataset is a fictitious dataset of student marks, consisting
+                of 30 rows of data (records), and 9 columns (dimensions), including the name
+                of the student. Each row represents one student and their marks between 0 and
+                100 in 8 subjects.
+            </p>
+            <p>
+                A typical sequence of analysis steps is demonstrated below. During the
+                demonstration, chart interactivity is disabled. In the final step,
+                interactivity can be enabled, and the chart can be freely explored.
+            </p>
+        </div>
+            <ol>
+                <li>
+                    <h3>
+                        <span></span> 1. Adjusting Dimension Ranges</h3>
+                    <div><div>
+                        <p>
+                            The range chosen for each dimension can significantly affect the
+                            visual pattern. By default, parallel coordinates implementations
+                            typically set the range for each dimension to match the minimum and
+                            maximum values in the dataset. Here, the PE dimension ranges by
+                            default from 51 to 99. In this dataset, each student is actually
+                            awarded between 0 and 100 points in each subject. The default range of
+                            the PE dimension gives a false visual impression, since the lowest
+                            data value in PE is 51 points. To better represent the original data
+                            domain, it makes sense to adjust the range of each dimension to extend
+                            from 0 to 100. The visual pattern changes accordingly.
+                        </p>
+                    </div></div>
+                </li>
+                <li>
+                    <h3>
+                        <span></span> 2. Selecting Records</h3>
+                    <div><div><p>Exploring the records, one noticeable feature is that all students have 50 or
+                        better in PE. There is also one student who is performing particularly badly in
+                        Art compared to the other students. Selecting this student reveals her to
+                        be student Sylvia.
+                    </p></div></div>
+                </li>
+                <li>
+                    <h3>
+                        <span></span> 3. Moving Dimensions</h3>
+                    <div><div><p>
+                        To directly compare dimensions and look for correlations, they must be placed next
+                        to each other. It make sense to move German next to English to test the theory that
+                        students who are good in one language also tend to be good in other languages
+                        (positive correlation). There are not many line crossings between English and German.
+                    </p></div></div>
+                </li>
+                <li>
+                    <h3>
+                        <span></span> 4. Inverting Dimensions</h3>
+                    <div><div><p>
+                        For confirmation, the dimension English can be inverted. A classic cross pattern can be seen,
+                        indicating a (now) negative correlation. This is a good visual confirmation that the two
+                        dimensions are, in fact, positively correlated.
+                    </p></div></div>
+                </li>
+                <li>
+                    <h3>
+                        <span></span> 5. Filtering Records</h3>
+                    <div><div>
+                        <p>
+                            Another technique to explore a dataset is to filter out records in one
+                            dimension, to see how those changes are reflected in other dimensions.
+                            For example, students with scores higher than 35 in IT can be filtered
+                            out, and it is noticeable that the remaining students (those
+                            particularly bad in IT) appear to be very good in History.
+                        </p>
+                    </div></div>
+                </li>
+                <li>
+                    <h3>
+                        <span></span> 6. Explore the Data</h3>
+                    <div><div>
+                        <p>
+                            Now reset the chart and enable interactivity, so that you can explore
+                            the data yourself!
+                        </p>
+                    </div></div>
+                </li>
+            </ol>
+            <div></div>
+            <p> In summary, interactive parallel coordinates are helpful to identify outliers, clusters, and correlations within a multidimensional dataset, as demonstrated in this case study. </p></article><article id="coordinated-multiple-views">
+            <h2>Coordinated Multiple Views</h2>
+
+            <figure>
+                <img src="/images/mva.png" alt="Screenshot of MVA">
+                <figcaption>Figure 4: Screenshot of MVA.</figcaption>
+            </figure>
+
+            <p>
+                Parallel coordinates are often used in combination with other types of chart
+                as synchronised (coordinated) multiple views. A combination of parallel
+                coordinates and scatterplots is particularly effective, and is provided by
+                multidimensional analysis tools such as MVA, High-D, GGobi, and XmdvTool.
+            </p>
+        </article>
+        <article id="resources">
+
+            <h2>Resources</h2>
+
+            <p>
+                The following resources were helpful in understanding parallel
+                coordinates and, consequently, in building an explorable explainer:
+            </p>
+
+            <ul>
+                <li>
+                    <div>
+        <span>
+          The Plane with Parallel Coordinates
+        </span>, Alfred Inselberg
+                    </div>
+                    <div>
+                        <a href="https://link.springer.com/article/10.1007/BF01898350">
+                            https://link.springer.com/article/10.1007/BF01898350
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+        <span>
+          Parallel Coordinates: Visual Multidimensional Geometry and
+          Its Applications
+        </span>, Alfred Inselberg
+                    </div>
+                    <div>
+                        <a href="https://www.amazon.co.uk/dp/0387215077/">
+                            https://www.amazon.co.uk/dp/0387215077/
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+        <span>
+          State of the Art of Parallel Coordinates
+        </span>, Julian Heinrich and Daniel Weiskopf
+                    </div>
+                    <div>
+                        <a href="https://joules.de/files/heinrich_state_2013.pdf">
+                            https://joules.de/files/heinrich_state_2013.pdf
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <p>
+                The references below relate to this project. It was first necessary
+                to build a parallel coordinates chart component, which can be
+                steered from outside over an API:
+            </p>
+
+            <ul>
+                <li>
+                    <div>
+        <span>
+          Steerable Parallel Coordinates in D3 (SPCD3)
+        </span>, Romana Gruber
+                    </div>
+                    <div>
+                        <a href="https://ftp.isds.tugraz.at/pub/projects/gruber-2024-10-30-spcd3.pdf">
+                            https://ftp.isds.tugraz.at/pub/projects/gruber-2024-10-30-spcd3.pdf
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+        <span>
+          Steerable Parallel Coordinates in D3 (SPCD3) - GIT
+        </span>, Romana Gruber
+                    </div>
+                    <div>
+                        <a href="https://github.com/tugraz-isds/spcd3">
+                            https://github.com/tugraz-isds/spcd3
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+        <span>
+          Explorable Explainers: Survey Paper
+        </span>, Philipp Drescher, Jeremias Kleinschuster, Sebastian
+                        Schreiner und Burim Vrella
+                    </div>
+                    <div>
+                        <a href="https://courses.isds.tugraz.at/ivis/surveys/ss2023/ivis-ss2023-g1-survey-explorables.pdf">
+                            https://courses.isds.tugraz.at/ivis/surveys/ss2023/ivis-ss2023-g1-survey-explorables.pdf
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <p>
+                Datasets and Images which are used:
+            </p>
+
+            <ul>
+                <li>
+                    <div>
+        <span>
+          Student Marks Dataset
+        </span>, Philipp Drescher, Jeremias Kleinschuster, Sebastian
+                        Schreiner und Burim Vrella
+                    </div>
+                    <div>
+                        <a href="https://github.com/burimvrella/SteerableParallelCoordinates/blob/main/lib/example/data/student-marks_v2.csv">
+                            https://github.com/burimvrella/SteerableParallelCoordinates/blob/main/lib/example/data/student-marks_v2.csv
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span>MVA Screenshot</span>, Ozbej Golob
+                    </div>
+                    <div>
+                        <a href="https://tugraz-isds.github.io/mva/">
+                            https://tugraz-isds.github.io/mva/
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+        </article>
+        <article><h2>About PCEE</h2>
+
+            <p>
+                The Parallel Coordinates Explorable Explainer (PCEE) is an interactive
+                tutorial about parallel coordinates. Parallel coordinates are a
+                powerful visualisation technique used to explore and analyse
+                multidimensional tabular data. <br><br>
+                This web site is based on the <a href="https://github.com/tugraz-isds/pcee">PCEE Main Project</a>
+                and is intended for research on website visibility, search engine optimization (SEO),
+                answer engine optimization (AEO)
+                and generative engine optimization (GEO).
+            </p>
+
+            <h3>Contributors</h3>
+            <ul>
+                <li>
+                    <p>
+                        Ismael Ibrahim, Xuiy XuZhang and Svyatoslav Gvozdkov.
+                        <br>IAWeb Student.
+                    </p>
+                </li>
+            </ul>
+
+            <h3>Contributors - Main Project </h3>
+            <ul>
+                <li>
+                    <p>
+                        Keith Andrews.
+                        <br>Project Leader.
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Romana Gruber.
+                        <br>Master's Thesis, main developer.
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Florian Zollner.
+                        <br>Bachelor's Thesis, usability evaluation.
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Philipp Drescher, Jeremias Kleinschuster, Sebastian Schreiner, and Burim Vrella.
+                        <br>InfoVis SS 2023 G1, prepared original students dataset.
+                    </p>
+                </li>
+
+            </ul></article><footer><a href="/gdpr-en.html" rel="nofollow">Privacy Policy</a></footer></main>
+    </noscript>
+    </div>
+
     <script type="module" src="/src/main.js"></script>
     <script defer src="./consentform/silktide-consent-manager.js"></script>
     <script defer src="./consentform/consent-config.js"></script>

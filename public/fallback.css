@@ -1,0 +1,35 @@
+#static-tutorial {
+    box-sizing: border-box;
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+    color: #152536;
+    background: #ffffff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+#static-tutorial h1, #static-tutorial h2, #static-tutorial h3 {
+    margin: 1.5rem 0 0.75rem;
+    padding: 0;
+    line-height: 1.3;
+}
+#static-tutorial p {
+    margin: 0 0 1rem;
+    border: 0;
+    text-indent: 0;
+    text-align: left;
+}
+#static-tutorial article { margin-bottom: 2rem; }
+#static-tutorial figure { margin: 1rem 0; }
+#static-tutorial img { max-width: 100%; height: auto; }
+#static-tutorial a { color: #005a7c; text-decoration: underline; }
+#static-tutorial .inline-icon { width: 1rem; height: 1rem; vertical-align: middle; }
+#static-tutorial .table-scroll { overflow-x: auto; }
+#static-tutorial table { width: 100%; border-collapse: collapse; }
+#static-tutorial th, #static-tutorial td {
+    padding: 0.5rem;
+    border: 0.0625rem solid #41596f;
+    white-space: normal;
+}
+#static-tutorial footer { margin-top: 2rem; text-align: center; }
