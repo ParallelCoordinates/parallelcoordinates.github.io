@@ -760,7 +760,6 @@ onMounted(async (): Promise<void> => {
     loadContent(recordOperationsText, 'content/operations-records.html'),
     loadContent(dimensionOperationsText, 'content/operations-dimensions.html'),
     loadContent(otherFunctionalityText, 'content/other-functionality.html'),
-    loadContent(healthDatasetText, 'content/data-health.html'),
     loadContent(usageText, 'content/usage.html'),
     loadContent(multipleViewsText, 'content/multipleviews.html'),
     loadContent(referencesDatasetText, 'content/resources.html'),
