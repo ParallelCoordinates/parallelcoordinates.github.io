@@ -5,7 +5,7 @@
   --content-panel-background: light-dark(oklch(0.99 0.011 91.69), #182733);
   --floating-card-background: light-dark(#ffffff, #213342);
   --subtle-panel-background: light-dark(#eef4f8, #223746);
-  --brand-accent-background: light-dark(rgba(0, 129, 175, 1), #0c5f7f);
+  --brand-accent-background:  #005a7c;
   --modal-overlay-background: light-dark(rgb(0 0 0 / 55%), rgb(2 6 23 / 72%));
   --ui-border-color: light-dark(#c9d3da, #355064);
   --panel-border-color: light-dark(#111827, #5d7a8f);
