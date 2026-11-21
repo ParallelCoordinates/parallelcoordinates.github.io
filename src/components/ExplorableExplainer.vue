@@ -8,20 +8,24 @@
         <a
           class="header-action-button"
           :href="repoUrl"
+          aria-label="Go to GitHub project"
         >
           <img
             class="header-icon-image"
             src="/svg/github.svg"
+            alt=""
           >
         </a>
         <button
           type="button"
           class="header-action-button"
+          aria-label="About this project"
           @click="showAbout = true"
         >
           <img
             class="header-icon-image"
             src="/svg/info-icon.svg"
+            alt=""
           >
         </button>
       </div>
@@ -106,6 +110,8 @@
         type="button"
         class="portrait-mode-toggle"
         :class="{ active: portraitReadingMode }"
+        :aria-pressed="portraitReadingMode"
+        aria-label="Expand reading area"
         @click="togglePortraitReadingMode"
       >
         <img src="/svg/split.svg" alt="" aria-hidden="true">

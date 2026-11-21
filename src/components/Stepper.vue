@@ -44,42 +44,54 @@
         <div class="buttons">
             <button
               id="reset-button"
+              type="button"
               class="stepper-button"
+              aria-label="Reset tutorial"
               :disabled="currentStep === 0 || isUpdatingChart"
               @click="reset"
             >
               <img class="icon"
                 src="/svg/reset-button.svg"
+                alt=""
               >
             </button>
             <button
               id="back-button"
+              type="button"
               class="stepper-button"
+              aria-label="Previous step"
               :disabled="currentStep === 0 || isUpdatingChart"
               @click="back"
             >
               <img class="icon"
                 src="/svg/back-button.svg"
+                alt=""
               >
             </button>
             <button
               id="next-button"
+              type="button"
               class="stepper-button"
+              aria-label="Next step"
               :disabled="currentStep === steps.length - 1 || isUpdatingChart"
               @click="next"
             >
               <img class="icon"
                 src="/svg/next-button.svg"
+                alt=""
               >
             </button>
             <button
               id="skip-button"
+              type="button"
               class="stepper-button"
+              aria-label="Go to last step"
               :disabled="currentStep === steps.length - 1 || isUpdatingChart"
               @click="skip"
             >
               <img class="icon"
                 src="/svg/skip-button.svg"
+                alt=""
               >
             </button>
         </div>
