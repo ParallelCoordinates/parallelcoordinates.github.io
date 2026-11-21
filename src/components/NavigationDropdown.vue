@@ -1,6 +1,7 @@
 <template>
   <select
     class="navigation-dropdown"
+    aria-label="Navigate to section"
     :value="activeId"
     @change="onChange"
   >

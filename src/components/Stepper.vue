@@ -14,7 +14,6 @@
             <div
             class="li-header"
             :style="{ cursor: 'pointer' }"
-            :aria-expanded="index === currentStep ? 'true' : 'false'"
             @click="goToStep(index)"
             >
             <span class="triangle-bullet"></span>
