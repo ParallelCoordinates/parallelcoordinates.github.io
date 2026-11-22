@@ -98,9 +98,9 @@
       >
         <NavigationDropdown :offset="60" />
         <div class="chart-wrapper">
-          <h3 id="chart-title">
+          <h2 id="chart-title">
             Personal Finances Dataset
-          </h3>
+          </h2>
           <div id="spcd3-parallelcoords" />
         </div>
       </div>
@@ -760,7 +760,6 @@ onMounted(async (): Promise<void> => {
     loadContent(recordOperationsText, 'content/operations-records.html'),
     loadContent(dimensionOperationsText, 'content/operations-dimensions.html'),
     loadContent(otherFunctionalityText, 'content/other-functionality.html'),
-    loadContent(healthDatasetText, 'content/data-health.html'),
     loadContent(usageText, 'content/usage.html'),
     loadContent(multipleViewsText, 'content/multipleviews.html'),
     loadContent(referencesDatasetText, 'content/resources.html'),
